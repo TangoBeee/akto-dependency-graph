@@ -1,0 +1,130 @@
+{
+    "dependencyTableList": null,
+    "modifyHostDetails": [],
+    "newCollectionId": 0,
+    "paramToValuesMap": {},
+    "replaceDetails": null,
+    "result": [
+        {
+            "apiCollectionId": "1709565022",
+            "connections": {
+                "sec-fetch-dest_isHeader": {
+                    "edges": [
+                        {
+                            "apiCollectionId": "1709565022",
+                            "count": 1,
+                            "depth": 1,
+                            "isHeader": true,
+                            "method": "GET",
+                            "param": "json#$#gauge",
+                            "url": "https:\/\/juiceshop.akto.io\/rest\/languages"
+                        }
+                    ],
+                    "isHeader": true,
+                    "isUrlParam": false,
+                    "param": "sec-fetch-dest"
+                }
+            },
+            "maxDepth": 1,
+            "method": "POST",
+            "url": "https:\/\/juiceshop.akto.io\/rest\/user\/login"
+        },
+        {
+            "apiCollectionId": "1709565022",
+            "connections": {
+                "sec-fetch-dest_isHeader": {
+                    "edges": [
+                        {
+                            "apiCollectionId": "1709565022",
+                            "count": 4,
+                            "depth": 1,
+                            "isHeader": true,
+                            "method": "GET",
+                            "param": "json#$#gauge",
+                            "url": "https:\/\/juiceshop.akto.io\/rest\/languages"
+                        }
+                    ],
+                    "isHeader": true,
+                    "isUrlParam": false,
+                    "param": "sec-fetch-dest"
+                },
+                "token_isHeader": {
+                    "edges": [
+                        {
+                            "apiCollectionId": "1709565022",
+                            "count": 4,
+                            "depth": 2,
+                            "isHeader": true,
+                            "method": "POST",
+                            "param": "authentication#token",
+                            "url": "https:\/\/juiceshop.akto.io\/rest\/user\/login"
+                        }
+                    ],
+                    "isHeader": true,
+                    "isUrlParam": false,
+                    "param": "token"
+                }
+            },
+            "maxDepth": 2,
+            "method": "GET",
+            "url": "https:\/\/juiceshop.akto.io\/rest\/products\/INTEGER\/reviews"
+        },
+        {
+            "apiCollectionId": "1709565022",
+            "connections": {
+                "sec-fetch-dest_isHeader": {
+                    "edges": [
+                        {
+                            "apiCollectionId": "1709565022",
+                            "count": 1,
+                            "depth": 1,
+                            "isHeader": true,
+                            "method": "GET",
+                            "param": "json#$#gauge",
+                            "url": "https:\/\/juiceshop.akto.io\/rest\/languages"
+                        }
+                    ],
+                    "isHeader": true,
+                    "isUrlParam": false,
+                    "param": "sec-fetch-dest"
+                },
+                "token_isHeader": {
+                    "edges": [
+                        {
+                            "apiCollectionId": "1709565022",
+                            "count": 1,
+                            "depth": 2,
+                            "isHeader": true,
+                            "method": "POST",
+                            "param": "authentication#token",
+                            "url": "https:\/\/juiceshop.akto.io\/rest\/user\/login"
+                        }
+                    ],
+                    "isHeader": true,
+                    "isUrlParam": false,
+                    "param": "token"
+                },
+                "id": {
+                    "edges": [
+                        {
+                            "apiCollectionId": "1709565022",
+                            "count": 1,
+                            "depth": 3,
+                            "isHeader": false,
+                            "method": "GET",
+                            "param": "data#$#_id",
+                            "url": "https:\/\/juiceshop.akto.io\/rest\/products\/INTEGER\/reviews"
+                        }
+                    ],
+                    "isHeader": false,
+                    "isUrlParam": false,
+                    "param": "id"
+                }
+            },
+            "maxDepth": 3,
+            "method": "PATCH",
+            "url": "https:\/\/juiceshop.akto.io\/rest\/products\/reviews"
+        }
+    ],
+    "total": 0
+}
