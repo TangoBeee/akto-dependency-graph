@@ -1,3 +1,3 @@
-# JSON Parser to Mermaid Flowchart Syntax
+# OpenAPI v3 to Dependency Graph
 
-A basic JSON parser that parse JSON to Mermaid Flowchart Syntax
+A web app that converts OpenAPI schema (JSON and YAML) to a Dependency Graph.

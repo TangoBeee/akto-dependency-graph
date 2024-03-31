@@ -1,18 +1,16 @@
 import React from 'react'
-import Home from './pages/Home/Home'
-
 import './App.css'
-import mermaid from 'mermaid'
+import Home from './components/Home/Home'
 
 const App = () => {
-
-  mermaid.initialize({
-    startOnLoad: true,
-    theme: 'forest',
-  })
-
   return (
-    <Home />
+    <>
+      <div className='header-wrapper'>
+        <h1 className='header'><span>OpenAPI</span> <br className='separator'/>to<br className='separator'/> Dependency Graph</h1>
+      </div>
+
+      <Home />
+    </>
   )
 }
 
