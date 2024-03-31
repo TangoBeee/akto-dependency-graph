@@ -25,7 +25,7 @@ Create a `.env` file in the root directory with the following content:
 VITE_API_BASE_URL=http://localhost:8080
 ```
 
-This environment variable specifies the base URL for the [API](https://www.akto.io/).
+This environment variable specifies the base URL for the [API](https://github.com/akto-api-security/akto/).
 
 ### 4. Run the Project
 
