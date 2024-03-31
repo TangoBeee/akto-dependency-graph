@@ -1,17 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600;800&display=swap');
 
 * {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: #181A1B;
-    color: #D6D3CD;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  background-color: #F3F3F3;
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+  .header {
+    font-weight: 600;
+    color: #222;
+    text-align: center;
+    
+    span {
+      background-color: #222;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    
+    .separator {
+      display: none;
+    }
+  }
+}
+
+.graph-minimap {
+  box-shadow: #2222224d 0px 0px 0px 2px;
+  svg {
+    width: 100px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 540px) {
+  .header-wrapper {
+    .header {
+      .separator {
+        display: inline;
+      }
+    }
+  }
 }
