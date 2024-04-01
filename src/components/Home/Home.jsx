@@ -4,6 +4,7 @@ import Graph from '../Graph/Graph'
 import { parseJson } from '../../utils/Parser'
 import { fetchJob, getJobStatus } from '../../utils/FetchData'
 import ParseImage from '../../assets/parse.svg'
+import { validate } from '../../utils/OpenAPIValidator'
 
 const Home = () => {
   const defaultError = 'Your dependency graph will be shown here.'
@@ -17,7 +18,10 @@ const Home = () => {
     setNodes(null)
     setEdges(null)
     setError(defaultError)
-    if(!value.trim()) {
+
+    const isValidSchema = validate(value)
+
+    if(!isValidSchema || !value.trim()) {
         setError("Please a valid OpenAPI schema. (JSON or YAML)")
         return
     }
