@@ -1,42 +1,30 @@
-import OpenAPISchemaValidator from 'openapi-schema-validator';
-import yaml from 'js-yaml';
+import axios from "axios";
+import yaml from "js-yaml";
 
-const handleParse = (value) => {
+export const validate = async (value) => {
     try {
-      const parsedData = JSON.parse(value);
-      return parsedData;
-    } catch (jsonError) {
-      try {
-        const parsedData = yaml.load(value);
-        return parsedData;
-      } catch (yamlError) {
-        return null;
-      }
+      const response = await axios.post((import.meta.env.VITE_OPENAPI_VALIDATION_BASE_URL)+'/api/openapi-validator', {
+        "schema": value
+      }, {
+        headers: {
+            'Content-Type': 'application/json',
+        }
+      });
+      
+      return handleStringify(response.data);
+    } catch (err) {
+      return false;
     }
-};
-
-export const validate = (value) => {
-    const parsedData = handleParse(value);
-    if(!parsedData) return false;
-
-    const openApiVersion = detectOpenApiVersion(parsedData);
-    if(!openApiVersion) return false;
-
-    const validator = new OpenAPISchemaValidator({version: openApiVersion});
-
-    const result = validator.validate(parsedData);
-
-    return result.errors.length == 0;
 }
 
-const detectOpenApiVersion = (schema) => {
-    if(!schema) return null;
-    
-    if (schema.openapi && schema.openapi.startsWith("3.")) {
-        return 3;
-    } else if (schema.swagger && schema.swagger.startsWith("2.")) {
-        return 2;
-    } else {
-        return null;
+const handleStringify = (api) => {
+  try {
+    return JSON.stringify(api);
+  } catch (jsonError) {
+    try {
+      return yaml.dump(api);
+    } catch (yamlError) {
+      return false;
     }
+  }
 };
