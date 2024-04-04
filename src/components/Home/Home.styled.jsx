@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const HomeContainer = styled.div`
     min-width: 95vw;
     margin-top: 50px;
+    text-align: center;
 
     .form-container {
         width: 100%;
@@ -87,7 +88,10 @@ export const HomeContainer = styled.div`
             
             .input-container {
                 width: 90%;
-                height: 500px;
+
+                .input-content {
+                    height: 500px;
+                }
             }
         }
     }
