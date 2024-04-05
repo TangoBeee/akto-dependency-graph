@@ -19,18 +19,26 @@ const Home = () => {
     setEdges(null)
     setError(defaultError)
 
-    const validSchema = await validate(value)
-    
-    if(validSchema === false || !value.trim()) {
-        setError("Please a valid OpenAPI schema. (JSON or YAML)")
+    if(!value.trim()) {
+        setError("Please enter a valid OpenAPI schema. (JSON or YAML)")
         return
     }
 
     setIsLoading(true)
+    
+    const validSchema = await validate(value)
+    
+    if(validSchema.error) {
+        setError(validSchema.error)
+        setIsLoading(false)
+        return
+    }
 
     const jobId = await fetchJob(validSchema, setError)
     if(jobId == null && !error) {
         setError("Something went wrong!")
+        setIsLoading(false)
+        return
     }
 //    const jobId = value;
     
