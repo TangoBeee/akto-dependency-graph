@@ -32,6 +32,7 @@ export const parseJson = ( data, setNodes, setEdges, setError ) => {
                             id: parentNode,
                             data: { label: parentNode },
                             position,
+                            style: { width: 'fit-content' },
                         });
                     }
 
@@ -40,6 +41,7 @@ export const parseJson = ( data, setNodes, setEdges, setError ) => {
                             id: currentNode,
                             data: { label: currentNode },
                             position,
+                            style: { width: 'fit-content' },
                         });
                     }
 
