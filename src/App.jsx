@@ -6,7 +6,7 @@ const App = () => {
   return (
     <>
       <div className='header-wrapper'>
-        <h1 className='header'><span>OpenAPI</span> <br className='separator'/>to<br className='separator'/> Dependency Graph</h1>
+        <a href='#' className='header'><span>OpenAPI</span> <br className='separator'/>to<br className='separator'/> Dependency Graph</a>
       </div>
 
       <Home />

@@ -33,6 +33,50 @@ export const HomeContainer = styled.div`
                 align-items: center;
                 padding: 10px 20px;
                 height: 720px;
+                position: relative;
+                
+                .upload-wrapper {
+                    position: absolute;
+                    margin: 15px 45px;
+                    right: 0;
+                    top: 0;
+
+                    .upload-button {
+                        all: unset;
+                        background-color: #222;
+                        color: white;
+                        cursor: pointer;
+                        padding: 5px 8px 1px 8px;
+                        border-radius: 12px;
+                        scale: 0.90;
+                        transition: ease-in-out 0.2s;
+                        opacity: 0.3;
+                        transform: matrix(1,0,0,-1,0,0);
+
+                        .upload-img {
+                            width: 24px;
+                            height: 24px;
+                        }
+
+                        &:hover {
+                            scale: 1;
+                            opacity: 1;
+                        }
+                    }
+                }
+
+                .error-wrapper {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    height: 100%;
+                    border: 0px;
+                    outline: 0px;
+                    resize: none;
+                    font-size: 16px;
+                    cursor: text;
+                }
             }
         }
     }

@@ -1,37 +1,54 @@
 import React from 'react';
-import { Panel, useReactFlow, getRectOfNodes, getTransformForBounds } from 'reactflow';
-import { toPng } from 'html-to-image';
+import { Panel, useReactFlow } from 'reactflow';
+import { toSvg } from 'html-to-image';
 import { DownloadButtonContainer } from './DownloadButton.styled';
 import DownloadImage from '../../assets/download.svg';
 
-function downloadImage(dataUrl) {
-  const a = document.createElement('a');
-
-  a.setAttribute('download', 'reactflow.png');
-  a.setAttribute('href', dataUrl);
-  a.click();
-}
-
-const imageWidth = 1024;
-const imageHeight = 768;
-
 function DownloadButton() {
-  const { getNodes } = useReactFlow();
-  const handleDownloadImage = () => {
-    const nodesBounds = getRectOfNodes(getNodes());
-    const transform = getTransformForBounds(nodesBounds, imageWidth, imageHeight, 0, 1);
+  const reactFlowInstance = useReactFlow();
 
-    toPng(document.querySelector('.react-flow__viewport'), {
-      backgroundColor: '#1a365d',
-      width: imageWidth,
-      height: imageHeight,
-      style: {
-        width: imageWidth,
-        height: imageHeight,
-        transform: `translate(${transform[0]}px, ${transform[1]}px) scale(${transform[2]})`,
-      },
-    }).then(downloadImage);
-  };
+  const handleDownloadImage = async () => {
+    reactFlowInstance.fitView();
+    
+    function filter(node) {
+        return (node.tagName !== 'i');
+    }
+  
+    let elements = document.getElementsByClassName('react-flow__renderer')[0];
+  
+    toSvg(elements, { filter: filter }).then(async (svgContent) => {
+        const svgElement = await decodeURIComponent(svgContent.replace("data:image/svg+xml;charset=utf-8,", '').trim());
+  
+        const newWindow = open();
+  
+        newWindow.document.write(`
+            <html>
+            <head>
+            <title>Graph.pdf</title>
+            <style>
+            @page {
+                size: A4 landscape !important;
+                margin: 0 !important;
+            }
+            @media print {
+                * {
+                    -webkit-print-color-adjust: exact !important;   /* Chrome, Safari */
+                    color-adjust: exact !important;                 /* Firefox */
+                }
+            }
+            </style>
+            </head>
+            <body style="margin:60px 32px 32px 32px ">
+                ${svgElement}
+                <script>
+                window.print();
+                window.close();
+                </script>
+            </body>
+            </html>
+        `);
+    });
+  }
 
   return (
     <Panel position="top-right">

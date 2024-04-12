@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { HomeContainer } from './Home.styled'
 import Graph from '../Graph/Graph'
 import { parseJson } from '../../utils/Parser'
 import { fetchJob, getJobStatus } from '../../utils/FetchData'
 import ParseImage from '../../assets/parse.svg'
+import UploadImage from '../../assets/download.svg'
 import { validate } from '../../utils/OpenAPIValidator'
 
 const Home = () => {
@@ -13,6 +14,39 @@ const Home = () => {
   const [edges, setEdges] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(defaultError)
+  const inputRef = useRef(null)
+
+  const handleOnUploadClick = () => {
+    inputRef.current?.click()
+  }
+
+  const onFileDrop = (event) => {
+    event.preventDefault()
+
+    const file = event.dataTransfer.files[0]
+    const reader = new FileReader()
+
+    reader.readAsText(file)
+    reader.onload = () => {
+        setValue(reader.result)
+    }
+    reader.onerror = () => {
+        setError(reader.error)
+    }
+  }
+
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0]
+    const reader = new FileReader()
+
+    reader.readAsText(file)
+    reader.onload = () => {
+        setValue(reader.result)
+    }
+    reader.onerror = () => {
+        setError(reader.error)
+    }
+  }
 
   const handleOnParserClick = async () => {
     setNodes(null)
@@ -40,12 +74,12 @@ const Home = () => {
         setIsLoading(false)
         return
     }
-//    const jobId = value;
+//    const jobId = value
     
     let data = undefined
     let i = 0
     const jobInterval = setInterval(async () => {
-        i++;
+        i++
         data = await getJobStatus(jobId, setError)
         
         if(data === 'Invalid schema') {
@@ -86,7 +120,13 @@ const Home = () => {
                     OpenAPI
                 </div>
 
-                <div className="input-content">
+                <div className="input-content" onDrop={onFileDrop}>
+                    <div className='upload-wrapper'>
+                        <button className='upload-button' onClick={handleOnUploadClick}>
+                            <input type='file' ref={inputRef} onChange={handleFileUpload} hidden />
+                            <img className='upload-img' src={UploadImage} alt="Upload-Button" />
+                        </button>
+                    </div>
                     <textarea
                         value={value}
                         onChange={e => setValue(e.target.value)}
@@ -107,7 +147,7 @@ const Home = () => {
 
                 <div id='graph-place' className="input-content">
                     { error ?
-                        error :
+                        <textarea className='error-wrapper' value={error} disabled /> :
                             nodes && edges ?
                                 <Graph nodes={nodes} edges={edges} /> : 
                                 "Your dependency graph will be shown here."

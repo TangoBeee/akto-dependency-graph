@@ -64,10 +64,11 @@ const LayoutFlow = ({ initialNodes, initialEdges }) => {
       proOptions={proOptions}
       nodes={nodes}
       edges={edges}
+      minZoom={0.001}
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
       snapToGrid={true}
-      fitView
+      fitView={true}
     >
       <Controls />
       <MiniMap className='graph-minimap' />
